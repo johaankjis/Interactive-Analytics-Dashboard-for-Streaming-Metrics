@@ -1,61 +1,121 @@
 # Interactive Analytics Dashboard for Streaming Metrics
 
-A modern, real-time analytics dashboard for monitoring streaming system performance. Built with Next.js 15, React 19, and TypeScript, this dashboard provides live monitoring of critical streaming metrics including bitrate, latency, error rates, and bandwidth usage.
+A real-time streaming analytics dashboard built with Next.js that provides comprehensive monitoring and performance metrics for streaming systems. The dashboard features live data visualization, interactive charts, and real-time metrics tracking.
 
-![Streaming Analytics Dashboard](https://img.shields.io/badge/Next.js-15.2.4-black?logo=next.js)
-![React](https://img.shields.io/badge/React-19-blue?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
-![License](https://img.shields.io/badge/license-MIT-green)
+![Dashboard Preview](public/placeholder.svg)
 
-## ✨ Features
+## 🚀 Features
 
-- **Real-time Metrics Streaming** - Live updates via Server-Sent Events (SSE)
-- **Interactive Visualizations** - Beautiful charts powered by Recharts
-- **Responsive Design** - Fully responsive UI that works on all devices
-- **Dark/Light Mode** - Theme toggle with persistent preferences
-- **Time Range Selection** - View metrics for 5 minutes, 1 hour, 12 hours, or 24 hours
-- **KPI Cards** - Real-time key performance indicators with trend indicators
-- **Data Export** - Export metrics data as JSON for further analysis
-- **Stream Details Dialog** - Detailed diagnostics for current streaming session
-- **Connection Status** - Visual indicator for real-time connection status
-- **Performance Optimized** - Throttled updates to prevent UI overload
+### Real-Time Monitoring
+- **Live Metrics Stream**: Real-time data updates using Server-Sent Events (SSE)
+- **Connection Status**: Visual indicator showing live connection status to the metrics stream
+- **Auto-Refresh**: Metrics automatically update every second with throttled UI updates for optimal performance
 
-## 📊 Key Metrics Tracked
+### Key Performance Indicators (KPIs)
+- **Current Bitrate**: Monitor streaming bitrate (kbps) with trend indicators
+- **Average Latency**: Track latency metrics (ms) with percentage change visualization
+- **Error Rate**: Real-time error rate monitoring with alerts
+- **Active Streams**: Track the number of concurrent active streams
 
-- **Bitrate** - Current streaming bitrate (kbps)
-- **Latency** - Average latency (ms)
-- **Error Rate** - Percentage of errors in the stream
-- **Active Streams** - Number of concurrent active streams
-- **Bandwidth** - Incoming and outgoing bandwidth usage (MB)
+### Data Visualization
+- **Interactive Line Charts**: Smooth, animated charts built with Recharts
+- **Multi-Line Charts**: Compare multiple metrics simultaneously
+- **Time Range Selection**: View metrics over different time periods (5m, 1h, 12h, 24h)
+- **Responsive Design**: Fully responsive charts that adapt to screen size
 
-## 🛠️ Tech Stack
+### User Experience
+- **Dark/Light Mode**: Toggle between dark and light themes with system preference detection
+- **Data Export**: Export metrics data as JSON for further analysis
+- **Metric Selector**: Choose which metrics to display in detailed views
+- **Stream Details**: View detailed information about streaming sessions
+
+### Performance Optimization
+- **Throttled Updates**: UI updates every 500ms to prevent performance degradation
+- **Data Buffering**: Efficient data handling with buffered updates
+- **Historical Data**: Pre-load historical data for immediate visualization
+- **Time-Based Filtering**: Automatically filter data based on selected time range
+
+## 🛠️ Technology Stack
 
 ### Frontend
-- **Framework**: Next.js 15.2.4 (App Router)
-- **UI Library**: React 19
-- **Language**: TypeScript 5
-- **Styling**: Tailwind CSS 4.1.9
-- **Charts**: Recharts 2.15.4, D3.js
-- **UI Components**: Radix UI primitives
-- **Icons**: Lucide React
-- **Fonts**: Geist Sans & Geist Mono
+- **Next.js 15.2.4**: React framework with App Router
+- **React 19**: Latest React with concurrent features
+- **TypeScript**: Type-safe development
+- **Tailwind CSS 4.1.9**: Utility-first CSS framework
+- **Geist Font**: Modern, clean typography
 
-### Key Libraries
-- **next-themes** - Theme management
-- **class-variance-authority** - Component variants
-- **tailwind-merge** - Tailwind class merging
-- **date-fns** - Date formatting
-- **zod** - Schema validation
-- **react-hook-form** - Form handling
+### UI Components
+- **Radix UI**: Accessible, unstyled component primitives
+- **Lucide React**: Beautiful, consistent icons
+- **Recharts 2.15.4**: Composable charting library
+- **Sonner**: Elegant toast notifications
+- **next-themes**: Theme management with system preference support
 
-## 📋 Prerequisites
+### Data Handling
+- **D3.js**: Advanced data manipulation and visualization
+- **date-fns**: Modern date utility library
+- **React Hook Form + Zod**: Form validation and management
 
-Before you begin, ensure you have the following installed:
+### Development Tools
+- **TypeScript 5**: Static type checking
+- **ESLint**: Code quality and consistency
+- **PostCSS**: CSS transformation and optimization
 
-- **Node.js** 18.17 or later
-- **pnpm** 8.0 or later (recommended) or npm/yarn
+## 📁 Project Structure
 
-## 🚀 Installation
+```
+Interactive-Analytics-Dashboard-for-Streaming-Metrics/
+├── app/                          # Next.js App Router
+│   ├── api/                      # API Routes
+│   │   ├── historical/           # Historical data endpoint
+│   │   │   └── route.ts         # Generates 12h of historical metrics
+│   │   └── metrics/              # Real-time metrics endpoint
+│   │       └── route.ts         # SSE stream for live metrics
+│   ├── globals.css               # Global styles
+│   ├── layout.tsx                # Root layout with metadata
+│   └── page.tsx                  # Main dashboard page
+│
+├── components/                   # React components
+│   ├── charts/                   # Chart components
+│   │   ├── line-chart.tsx       # Single metric line chart
+│   │   └── multi-line-chart.tsx # Multi-metric comparison chart
+│   ├── ui/                       # Shadcn/Radix UI components
+│   │   └── ...                  # 70+ reusable UI components
+│   ├── connection-status.tsx     # Live connection indicator
+│   ├── kpi-card.tsx              # KPI display card
+│   ├── metric-selector.tsx       # Metric selection dropdown
+│   ├── providers.tsx             # Context providers wrapper
+│   ├── stream-details-dialog.tsx # Stream detail modal
+│   ├── theme-provider.tsx        # Theme context provider
+│   └── theme-toggle.tsx          # Dark/light mode toggle
+│
+├── hooks/                        # Custom React hooks
+│   ├── use-mobile.ts             # Mobile detection hook
+│   ├── use-streaming-metrics.ts  # Real-time metrics management
+│   └── use-toast.ts              # Toast notification hook
+│
+├── lib/                          # Utility libraries
+│   ├── types.ts                  # TypeScript type definitions
+│   └── utils.ts                  # Utility functions (cn, etc.)
+│
+├── public/                       # Static assets
+├── styles/                       # Additional styles
+├── components.json               # Shadcn UI configuration
+├── next.config.mjs               # Next.js configuration
+├── package.json                  # Dependencies and scripts
+├── postcss.config.mjs            # PostCSS configuration
+├── tsconfig.json                 # TypeScript configuration
+└── pnpm-lock.yaml                # Dependency lock file
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js**: v20.x or higher
+- **npm**: v10.x or higher (or pnpm/yarn)
+
+### Installation
 
 1. **Clone the repository**
    ```bash
@@ -65,268 +125,224 @@ Before you begin, ensure you have the following installed:
 
 2. **Install dependencies**
    ```bash
-   pnpm install
-   # or
    npm install
+   # or
+   pnpm install
    # or
    yarn install
    ```
 
-## 🏃 Running the Application
+3. **Run the development server**
+   ```bash
+   npm run dev
+   # or
+   pnpm dev
+   # or
+   yarn dev
+   ```
 
-### Development Mode
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000) to see the dashboard.
 
-Start the development server with hot reload:
-
-```bash
-pnpm dev
-# or
-npm run dev
-# or
-yarn dev
-```
-
-The application will be available at [http://localhost:3000](http://localhost:3000)
-
-### Production Build
-
-Build the application for production:
+### Build for Production
 
 ```bash
-pnpm build
-# or
+# Build the application
 npm run build
-# or
-yarn build
-```
 
-### Start Production Server
-
-After building, start the production server:
-
-```bash
-pnpm start
-# or
+# Start the production server
 npm start
-# or
-yarn start
 ```
 
-### Linting
+## 📊 API Documentation
 
-Run the linter to check for code quality issues:
+### Endpoints
 
-```bash
-pnpm lint
-# or
-npm run lint
-# or
-yarn lint
-```
-
-## 📁 Project Structure
-
-```
-Interactive-Analytics-Dashboard-for-Streaming-Metrics/
-├── app/                          # Next.js App Router
-│   ├── api/                     # API Routes
-│   │   ├── metrics/            # Real-time metrics SSE endpoint
-│   │   │   └── route.ts
-│   │   └── historical/         # Historical data endpoint
-│   │       └── route.ts
-│   ├── globals.css             # Global styles
-│   ├── layout.tsx              # Root layout
-│   └── page.tsx                # Main dashboard page
-├── components/                  # React components
-│   ├── charts/                 # Chart components
-│   │   ├── line-chart.tsx
-│   │   └── multi-line-chart.tsx
-│   ├── ui/                     # Reusable UI components (Radix-based)
-│   ├── connection-status.tsx   # Connection status indicator
-│   ├── kpi-card.tsx           # KPI display card
-│   ├── metric-selector.tsx    # Metric selection component
-│   ├── providers.tsx          # Context providers
-│   ├── stream-details-dialog.tsx  # Stream details modal
-│   ├── theme-provider.tsx     # Theme context provider
-│   └── theme-toggle.tsx       # Theme toggle button
-├── hooks/                      # Custom React hooks
-│   ├── use-mobile.ts          # Mobile detection hook
-│   ├── use-streaming-metrics.ts  # Main metrics hook
-│   └── use-toast.ts           # Toast notifications hook
-├── lib/                        # Utility functions and types
-│   ├── types.ts               # TypeScript type definitions
-│   └── utils.ts               # Utility functions
-├── public/                     # Static assets
-├── styles/                     # Additional styles
-├── components.json             # shadcn/ui configuration
-├── next.config.mjs            # Next.js configuration
-├── package.json               # Dependencies and scripts
-├── postcss.config.mjs         # PostCSS configuration
-├── tailwind.config.ts         # Tailwind CSS configuration
-└── tsconfig.json              # TypeScript configuration
-```
-
-## 🔌 API Endpoints
-
-### GET `/api/metrics`
-
-Server-Sent Events (SSE) endpoint for real-time streaming metrics.
+#### GET `/api/metrics`
+Real-time metrics stream using Server-Sent Events (SSE).
 
 **Response Format:**
 ```typescript
 {
-  timestamp: number,        // Unix timestamp in milliseconds
-  bitrate: number,         // kbps (2500-4000)
-  latency: number,         // ms (50-200)
-  errorRate: number,       // percentage (0-5)
-  activeStreams: number,   // count (100-150)
+  timestamp: number,        // Unix timestamp
+  bitrate: number,          // Current bitrate in kbps (2500-4000)
+  latency: number,          // Latency in milliseconds (50-200)
+  errorRate: number,        // Error rate percentage (0-5)
+  activeStreams: number,    // Number of active streams (100-150)
   bandwidth: {
-    outgoing: number,      // MB (800-1200)
-    incoming: number       // MB (200-350)
+    outgoing: number,       // Outgoing bandwidth in MB (800-1200)
+    incoming: number        // Incoming bandwidth in MB (200-350)
   }
 }
 ```
 
-**Connection:**
-- Updates every 1 second
-- Uses `text/event-stream` content type
-- Auto-reconnects on connection loss
+**Stream Configuration:**
+- Update interval: 1 second
+- Content-Type: `text/event-stream`
+- Connection: `keep-alive`
 
-### GET `/api/historical`
+#### GET `/api/historical`
+Historical metrics data for initial chart population.
 
-Fetch historical metrics data for chart initialization.
+**Response:**
+- Returns 720 data points (12 hours of data)
+- 1 data point per minute
+- Same format as `/api/metrics` endpoint
 
-**Response:** Array of StreamingMetrics objects (720 data points for 12 hours)
+## 🎨 Customization
 
-## ⚙️ Configuration
+### Theme Configuration
 
-### Next.js Configuration (`next.config.mjs`)
+The dashboard supports dark and light themes. Themes are managed using `next-themes` and can be customized in:
+- `components/theme-provider.tsx`: Theme context setup
+- `components/theme-toggle.tsx`: Theme switcher component
+- `app/globals.css`: CSS custom properties for theming
 
+### Metrics Configuration
+
+To modify the metrics data source or add new metrics:
+
+1. **Update Type Definitions** (`lib/types.ts`)
+   ```typescript
+   export interface StreamingMetrics {
+     timestamp: number
+     // Add your custom metrics here
+     customMetric: number
+   }
+   ```
+
+2. **Modify API Endpoints**
+   - `app/api/metrics/route.ts`: Real-time data generation
+   - `app/api/historical/route.ts`: Historical data generation
+
+3. **Update Dashboard Components**
+   - `app/page.tsx`: Add new KPI cards or charts
+   - `components/kpi-card.tsx`: Customize KPI display
+
+### Time Ranges
+
+Modify available time ranges in `lib/types.ts`:
+```typescript
+export type TimeRange = "5m" | "1h" | "12h" | "24h" | "7d" | "30d"
+```
+
+Update the time range logic in `hooks/use-streaming-metrics.ts` to handle new ranges.
+
+## 🧪 Development
+
+### Available Scripts
+
+```bash
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+
+# Run linting
+npm run lint
+```
+
+### Code Quality
+
+- **TypeScript**: Strict type checking enabled
+- **ESLint**: Code linting with Next.js recommended rules
+- **Build Errors**: TypeScript and ESLint errors ignored during builds (configured in `next.config.mjs`)
+
+### Performance Optimization
+
+The dashboard implements several performance optimizations:
+
+1. **Throttled Updates**: UI updates every 500ms instead of on every data point
+2. **Data Buffering**: Metrics are buffered and flushed periodically
+3. **Time-Based Filtering**: Old data is automatically pruned based on selected time range
+4. **Memoization**: React.useMemo used for expensive calculations
+5. **Code Splitting**: Next.js automatic code splitting for optimal loading
+
+## 🔧 Configuration Files
+
+### `next.config.mjs`
 ```javascript
 {
-  reactStrictMode: true,
-  swcMinify: true,
+  reactStrictMode: true,    // Enable React strict mode
+  swcMinify: true,          // Use SWC for minification
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true // Skip ESLint during builds
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true  // Skip TypeScript errors during builds
   },
   images: {
     formats: ["image/avif", "image/webp"],
-    unoptimized: true,
+    unoptimized: true
   }
 }
 ```
 
-### Time Range Options
+### `tsconfig.json`
+- TypeScript 5 with strict mode
+- Path aliases: `@/*` maps to project root
+- Target: ES2017 with ESNext module resolution
 
-- **5m** - Last 5 minutes
-- **1h** - Last 1 hour
-- **12h** - Last 12 hours (default)
-- **24h** - Last 24 hours
-
-## 🧩 Key Components
-
-### `useStreamingMetrics` Hook
-
-Custom hook for managing real-time metrics data.
-
-**Features:**
-- Connects to SSE endpoint
-- Loads historical data
-- Throttles updates (500ms interval)
-- Filters data by time range
-- Manages connection state
-
-**Usage:**
-```typescript
-const { metrics, isConnected } = useStreamingMetrics(timeRange)
-```
-
-### KPICard Component
-
-Displays key performance indicators with trend information.
-
-**Props:**
-- `title` - Metric name
-- `value` - Current value
-- `unit` - Unit of measurement
-- `trend` - "up" | "down" | "neutral"
-- `trendValue` - Percentage change
-- `icon` - React icon component
-- `color` - Custom color for value
-
-### Charts
-
-- **LineChart** - Single metric visualization
-- **MultiLineChart** - Multiple metrics on one chart
-
-## 🎨 Theming
-
-The application supports both light and dark themes using `next-themes`. The theme preference is persisted in localStorage.
-
-**Theme Toggle:**
-- Click the theme toggle button in the header
-- System preference is detected by default
-- Manual selection overrides system preference
-
-## 🔧 Development
-
-### Adding New Metrics
-
-1. Update `StreamingMetrics` type in `lib/types.ts`
-2. Modify data generator in `app/api/metrics/route.ts`
-3. Update chart components to display new metrics
-4. Add corresponding KPI cards if needed
-
-### Customizing the Dashboard
-
-- **Color Scheme**: Modify Tailwind configuration
-- **Update Interval**: Change `THROTTLE_INTERVAL` in `use-streaming-metrics.ts`
-- **Data Points**: Adjust `dataPoints` in `app/api/historical/route.ts`
-- **Metric Ranges**: Update generator logic in `app/api/metrics/route.ts`
+### `components.json`
+- Shadcn UI configuration
+- Component aliases and styling preferences
+- Tailwind CSS integration
 
 ## 📱 Responsive Design
 
-The dashboard is fully responsive and optimized for:
-- **Desktop** - Full feature set with multi-column layouts
-- **Tablet** - Adaptive grid layouts
-- **Mobile** - Single-column layout with touch-optimized controls
+The dashboard is fully responsive with breakpoints:
+- **Mobile**: < 640px
+- **Tablet**: 640px - 1024px
+- **Desktop**: > 1024px
 
-## 🚀 Performance Optimizations
+Key responsive features:
+- Adaptive grid layouts
+- Collapsible navigation
+- Touch-friendly interactions
+- Optimized chart rendering
 
-- **Throttled Updates**: UI updates limited to 500ms intervals
-- **Memoized Components**: React.memo for expensive components
-- **Lazy Loading**: Components loaded on demand
-- **SWC Minification**: Fast builds with SWC compiler
-- **Image Optimization**: AVIF and WebP format support
+## 🌐 Browser Support
+
+- Chrome/Edge: Latest 2 versions
+- Firefox: Latest 2 versions
+- Safari: Latest 2 versions
+- Mobile browsers: iOS Safari, Chrome Android
+
+## 📝 License
+
+This project is private. All rights reserved.
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+This is a private repository. If you have access and want to contribute:
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
+## 🐛 Known Issues
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+- TypeScript and ESLint errors are ignored during builds (intentional configuration)
+- Image optimization is disabled (`unoptimized: true`)
+
+## 📧 Contact
+
+For questions or support, please contact the repository owner.
 
 ## 🙏 Acknowledgments
 
-- Built with [v0.app](https://v0.dev) - AI-powered UI generation
-- UI components based on [shadcn/ui](https://ui.shadcn.com/)
+- Built with [Next.js](https://nextjs.org/)
+- UI components from [Radix UI](https://www.radix-ui.com/)
 - Charts powered by [Recharts](https://recharts.org/)
 - Icons from [Lucide](https://lucide.dev/)
-
-## 📞 Support
-
-If you encounter any issues or have questions, please open an issue on GitHub.
+- Fonts from [Geist](https://vercel.com/font)
 
 ---
 
-**Made with ❤️ using Next.js and React**
+**Generated with v0.app** | Built with ❤️ using Next.js
